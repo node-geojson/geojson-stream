@@ -4,7 +4,7 @@
   "description": "stream features into and out of geojson",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "tap test/*.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,7 @@
     "through": "~2.3.4"
   },
   "devDependencies": {
-    "expect.js": "~0.2.0",
-    "mocha": "~1.13.0",
-    "concat-stream": "~1.0.1"
+    "concat-stream": "~1.0.1",
+    "tap": "~0.4.9"
   }
 }
