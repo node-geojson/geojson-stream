@@ -35,3 +35,30 @@ test('geojson-stream: write', function(t) {
         t.end();
     }
 });
+
+test('geojson-stream: write with properties', function(t) {
+    var pt = {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [0, 0]
+        },
+        properties: {}
+    };
+
+    var properties = { prop1: 'value1', prop2: 1729 }
+
+    var s = geojsonStream.stringify(properties);
+    s.pipe(concat(finish));
+    s.write(pt);
+    s.end();
+
+    function finish(str) {
+        t.deepEqual(JSON.parse(str), {
+            type: 'FeatureCollection',
+            properties: properties,
+            features: [pt]
+        });
+        t.end();
+    }
+})
