@@ -23,8 +23,8 @@
     "url": "https://github.com/tmcw/geojson-stream/issues"
   },
   "dependencies": {
-    "JSONStream": "~0.7.1",
-    "through": "~2.3.4"
+    "JSONStream": "^1.0.0",
+    "through": "^2.3.4"
   },
   "devDependencies": {
     "concat-stream": "~1.0.1",
