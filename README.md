@@ -1,5 +1,7 @@
 # geojson-stream
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tmcw/geojson-stream.svg)](https://greenkeeper.io/)
+
 [![build status](https://secure.travis-ci.org/mapbox/geojson-stream.png)](http://travis-ci.org/mapbox/geojson-stream)
 
 Stream features into and out of [GeoJSON](http://geojson.org/) objects
