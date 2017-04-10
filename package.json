@@ -27,7 +27,7 @@
     "through": "^2.3.4"
   },
   "devDependencies": {
-    "concat-stream": "~1.0.1",
-    "tap": "~0.4.9"
+    "concat-stream": "~1.6.0",
+    "tap": "~10.3.2"
   }
 }
