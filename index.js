@@ -1,6 +1,9 @@
 var JSONStream = require('JSONStream');
 
-var open = '{"type":"FeatureCollection","features":[',
+var openPre = '{"type":"FeatureCollection"',
+    propsPre = ',"properties":'
+    openPost = ',"features":[',
+    open = openPre + openPost
     close = ']}';
 
 module.exports.parse = function() {
@@ -8,7 +11,10 @@ module.exports.parse = function() {
     return jsonstream;
 };
 
-module.exports.stringify = function() {
-    var jsonstream = JSONStream.stringify(open, '\n,\n', close);
+module.exports.stringify = function(properties) {
+    var start = properties ?
+      (openPre + propsPre + JSON.stringify(properties) + openPost) :
+      open;
+    var jsonstream = JSONStream.stringify(start, '\n,\n', close);
     return jsonstream;
 };
