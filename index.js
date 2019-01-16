@@ -3,8 +3,14 @@ var JSONStream = require('JSONStream');
 var open = '{"type":"FeatureCollection","features":[',
     close = ']}';
 
-module.exports.parse = function() {
-    var jsonstream = JSONStream.parse('features.*');
+module.exports.parse = function(mapFunc) {
+    var indexFunc;
+    if (mapFunc) {
+        indexFunc = function(feature, context) {
+            return mapFunc(feature, context[1]);
+        }
+    }
+    var jsonstream = JSONStream.parse('features.*', indexFunc);
     return jsonstream;
 };
 

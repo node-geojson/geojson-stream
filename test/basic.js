@@ -12,6 +12,21 @@ test('geojson-stream: read', function(t) {
         }));
 });
 
+test('geojson-stream: read with map', function(t) {
+    function addExtraProp(feature, index) {
+        feature.properties.extraProp = true;
+        feature.id = index;
+        return feature;
+    }
+    var s = geojsonStream.parse(addExtraProp);
+    fs.createReadStream(__dirname + '/data/featurecollection.geojson')
+        .pipe(s).pipe(concat(function(d) {
+            t.deepEqual(d, JSON.parse(fs.readFileSync(__dirname + '/data/extraprop.result')));
+            t.end();
+        }));
+});
+
+
 test('geojson-stream: write', function(t) {
     var pt = {
         type: 'Feature',

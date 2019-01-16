@@ -16,9 +16,31 @@ with pre-filled settings.
 ### `geojsonStream.stringify()`
 
 Returns a transform stream that accepts GeoJSON Feature objects and emits
-a stringified FeatureCollection
+a stringified FeatureCollection.
 
-### `geojsonStream.parse()`
+### `geojsonStream.parse(mapFunc)`
 
 Returns a transform stream that accepts a GeoJSON FeatureCollection as a stream
-and emits Feature objects
+and emits Feature objects.
+
+`mapFunc(feature, index)` is an optional function which takes a `Feature`, and its zero-based index in the `FeatureCollection` and returns either a `Feature`, or null/undefined 
+if the feature should be omitted from output.
+
+## example
+
+```
+const geojsonStream = require('geojson-stream');
+const fs = require('fs');
+const out = fs.createWriteStream('buildings-with-id.geojson');
+fs
+    .createReadStream(`buildings.geojson`)
+    .pipe(geojsonStream.parse((building, index) => {
+        if (building.geometry.coordinates === null) {
+            return null;
+        }
+        building.id = index;
+        return building;
+    }))
+    .pipe(geojsonStream.stringify())
+    .pipe(out);
+```
