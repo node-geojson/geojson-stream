@@ -1,6 +1,6 @@
 {
   "name": "geojson-stream",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "stream features into and out of geojson",
   "main": "index.js",
   "scripts": {
